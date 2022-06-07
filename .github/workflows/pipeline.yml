@@ -42,7 +42,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true     # will it push or just build
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:${{ github.sha }} # tag of the image
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:${{github.sha}} # tag of the image
   Deploy:
     needs: Build
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_RSA_key ${USER_NAME}@${HOSTIP} '
             sudo docker container stop nest-crud
             sudo docker container rm nest-crud
-            sudo docker image rm ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
-            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
-            sudo docker run -d -p 3000:3000 --name=nest-crud ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
+            sudo docker image rm ${{secrets.DOCKER_HUB_USERNAME}}/devops-project:{{github.sha}}
+            sudo docker pull ${{secrets.DOCKER_HUB_USERNAME}}/devops-project:{{github.sha}}
+            sudo docker run -d -p 3000:3000 --name=nest-crud ${{secrets.DOCKER_HUB_USERNAME}}/devops-project:{{github.sha}}
           '
