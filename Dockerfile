@@ -4,11 +4,11 @@ WORKDIR /app
 COPY package*.json .
 
 
-# RUN npm install --only=production --force
-RUN npm install 
+RUN npm install --only=production --force
+# RUN npm install 
 
 COPY . .
-RUN npm i -g @nestjs/cli
+RUN npm i  @nestjs/cli
 RUN nest build
 
 EXPOSE  3000
