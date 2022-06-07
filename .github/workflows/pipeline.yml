@@ -55,7 +55,7 @@ jobs:
           USER_NAME: ubuntu
 
         run: |
-          echo "${{ AWS_PRIVATE_RSA_KEY }}" > private_RSA_key && chmod 600 private_key
+          echo "$AWS_PRIVATE_RSA_KEY" > private_RSA_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${{USER_NAME}}@${{HOSTIP}} '
             sudo docker container stop nest-crud
             sudo docker container rm nest-crud
