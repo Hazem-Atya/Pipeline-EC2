@@ -66,7 +66,6 @@ describe('ProductController', () => {
     const product: ProductClass = (await apiClient().get('/products/629fd6346dc05c5cd0e9f879'))
       .body;
     expect(product._id).toEqual('629fd6346dc05c5cd0e9f879');
-    expect(product.qty).toEqual(15);
   });
 
   test('getProduct by non existing id', async () => {
