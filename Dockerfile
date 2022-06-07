@@ -8,7 +8,7 @@ COPY package*.json .
 RUN npm install 
 
 COPY . .
-
+RUN npm i -g @nestjs/cli
 RUN nest build
 
 EXPOSE  3000
