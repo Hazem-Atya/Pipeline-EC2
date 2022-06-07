@@ -56,7 +56,7 @@ jobs:
 
         run: |
           echo "$AWS_PRIVATE_RSA_KEY" > private_RSA_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${{USER_NAME}}@${{HOSTIP}} '
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTIP} '
             sudo docker container stop nest-crud
             sudo docker container rm nest-crud
             sudo docker image rm ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
