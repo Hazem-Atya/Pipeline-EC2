@@ -43,3 +43,23 @@ jobs:
           file: ./Dockerfile
           push: true     # will it push or just build
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:${{ github.sha }} # tag of the image
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Connecting to EC2 machine and deploiement
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
+          HOSTNAME: ${{ secrets.EC2_HOSTNAME }}
+          USER_NAME: ubuntu
+
+        run: |
+          echo "${{ AWS_PRIVATE_RSA_KEY }}" > private_RSA_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${{USER_NAME}}@${{HOSTIP}} '
+            sudo docker container stop nest-crud
+            sudo docker container rm nest-crud
+            sudo docker image rm ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
+            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
+            sudo docker run -d -p 3000:3000 --name=nest-crud ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project:{{ github.sha }}
+          '
