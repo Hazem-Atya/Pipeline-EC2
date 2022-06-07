@@ -34,7 +34,7 @@ jobs:
       - name: 'Creating the .env file'  # this file contains the connection string to the mongo DB
         run: |
           touch .env
-          echo CONNECTION_STRING="${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
+          echo DB_CONNECTION_STRING="${{ secrets.MONGODB_CONNECTION_STRING }}" >> .env
       - name: Build and push
         uses: docker/build-push-action@v2
         
