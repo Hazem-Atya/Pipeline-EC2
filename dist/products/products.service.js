@@ -28,21 +28,24 @@ let ProductsService = class ProductsService {
         return await this.productModel.findOne({ _id: id });
     }
     async create(product) {
-        const newProduct = new this.productModel(product);
-        return await newProduct.save();
+        return await this.productModel.create(product);
     }
     async delete(id) {
         return await this.productModel.findByIdAndRemove(id);
     }
     async update(id, product) {
-        return await this.productModel.findByIdAndUpdate(id, product, {
+        const newProd = await this.productModel.findByIdAndUpdate(id, product, {
             new: true,
         });
+        if (!newProd) {
+            throw new common_1.PreconditionFailedException('Product with this ID is inexisting');
+        }
+        return newProd;
     }
 };
 ProductsService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_2.InjectModel)(product_schema_1.ProductClass.name)),
+    common_1.Injectable(),
+    __param(0, mongoose_2.InjectModel(product_schema_1.ProductClass.name)),
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], ProductsService);
 exports.ProductsService = ProductsService;

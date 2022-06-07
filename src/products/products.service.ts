@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, PreconditionFailedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './interfaces/product.interface';
 import { ProductClass } from './schemas/product.schema';
@@ -20,8 +20,9 @@ export class ProductsService {
   }
 
   async create(product: Product): Promise<Product> {
-    const newProduct = new this.productModel(product);
-    return await newProduct.save();
+    // const newProduct = new this.productModel(product);
+    // return await newProduct.save();
+    return await this.productModel.create(product)
   }
 
   async delete(id: string): Promise<Product> {
@@ -29,8 +30,12 @@ export class ProductsService {
   }
 
   async update(id: string, product: Product): Promise<Product> {
-    return await this.productModel.findByIdAndUpdate(id, product, {
+    const newProd = await this.productModel.findByIdAndUpdate(id, product, {
       new: true,
     });
+    if (!newProd) {
+      throw new PreconditionFailedException('Product with this ID is inexisting');
+    }
+    return newProd;
   }
 }

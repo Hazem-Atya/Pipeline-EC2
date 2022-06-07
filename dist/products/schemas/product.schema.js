@@ -15,19 +15,19 @@ const mongoose_2 = require("mongoose");
 let ProductClass = class ProductClass extends mongoose_2.Document {
 };
 __decorate([
-    (0, mongoose_1.Prop)(),
+    mongoose_1.Prop(),
     __metadata("design:type", String)
 ], ProductClass.prototype, "name", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    mongoose_1.Prop(),
     __metadata("design:type", Number)
 ], ProductClass.prototype, "qty", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    mongoose_1.Prop(),
     __metadata("design:type", String)
 ], ProductClass.prototype, "description", void 0);
 ProductClass = __decorate([
-    (0, mongoose_1.Schema)()
+    mongoose_1.Schema()
 ], ProductClass);
 exports.ProductClass = ProductClass;
 exports.ProductSchema = mongoose_1.SchemaFactory.createForClass(ProductClass);
