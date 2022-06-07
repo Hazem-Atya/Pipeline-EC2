@@ -50,19 +50,19 @@ describe('ProductController', () => {
     const deletedProduct = await apiClient()
       .delete(`/products/${products[products.length - 1]._id}`)
       .expect(200);
-    expect(deletedProduct.body).toEqual({ deletedCount: 1 });
+    expect(deletedProduct.body._id).toEqual(products[products.length - 1]._id);
   });
 
   test('getAllProducts', async () => {
     await apiClient().get('/products').expect(200);
     const products: ProductClass[] = (await apiClient().get('/products')).body;
     expect(products.length).toEqual(2);
-    expect(products[0]._id).toEqual('626c07c021c78dd30f4def89');
-    expect(products[1]._id).toEqual('626c07eea92d7fcab7cff01b');
+    expect(products[0]._id).toEqual('629d60aba01c6f6f180df47a');
+    expect(products[1]._id).toEqual('629fd6346dc05c5cd0e9f879');
   });
 
   test('getProduct by id', async () => {
-    await apiClient().get('/product/629fd6346dc05c5cd0e9f879').expect(200);
+    await apiClient().get('/products/629fd6346dc05c5cd0e9f879').expect(200);
     const product: ProductClass = (await apiClient().get('/products/629fd6346dc05c5cd0e9f879'))
       .body;
     expect(product._id).toEqual('629fd6346dc05c5cd0e9f879');
@@ -77,32 +77,21 @@ describe('ProductController', () => {
   });
 
   test('getProduct by non valid id', async () => {
-    await apiClient().get('/products/azers').expect(412);
+    await apiClient().get('/products/azers').expect(500);
   });
 
   test('updateProductById', async () => {
-    let products: ProductClass[] = (await apiClient().get('/product')).body;
+    let products: ProductClass[] = (await apiClient().get('/products')).body;
     expect(products.length).toEqual(2);
     const updatedProduct = await apiClient()
-      .post(`/product/${products[products.length - 1]._id}`)
+      .put(`/products/${products[products.length - 1]._id}`)
       .send({
-        fullAddress: {
-          address: 'Sousse',
-          city: 'Sousse',
-          country: 'Tunis',
-          postalCode: '8957',
-        },
+        qty:20
       })
-      .expect(201);
-    expect(updatedProduct.body.fullAddress).toEqual({
-      address: 'Sousse',
-      city: 'Sousse',
-      country: 'Tunis',
-      postalCode: '8957',
-    });
+      .expect(200);
+    expect(updatedProduct.body.qty).toEqual(20);
     expect(updatedProduct.body._id).toEqual(products[products.length - 1]._id);
-    expect(updatedProduct.body.email).toEqual(products[products.length - 1].qty);
-    products = (await apiClient().get('/product')).body;
+    products = (await apiClient().get('/products')).body;
     expect(products.length).toBe(2);
   });
 });
