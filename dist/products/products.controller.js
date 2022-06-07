@@ -37,42 +37,42 @@ let ProductsController = class ProductsController {
     }
 };
 __decorate([
-    common_1.Get(),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "findAll", null);
 __decorate([
-    common_1.Get(':id'),
-    __param(0, common_1.Param('id')),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "findOne", null);
 __decorate([
-    common_1.Post(),
-    __param(0, common_1.Body()),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "create", null);
 __decorate([
-    common_1.Delete(':id'),
-    __param(0, common_1.Param('id')),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "delete", null);
 __decorate([
-    common_1.Put(':id'),
-    __param(0, common_1.Param('id')),
-    __param(1, common_1.Body()),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, create_product_dto_1.CreateProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "update", null);
 ProductsController = __decorate([
-    common_1.Controller('products'),
+    (0, common_1.Controller)('products'),
     __metadata("design:paramtypes", [products_service_1.ProductsService])
 ], ProductsController);
 exports.ProductsController = ProductsController;

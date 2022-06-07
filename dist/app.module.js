@@ -14,7 +14,7 @@ const keys_1 = require("./config/keys");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forRoot(keys_1.default.mongoURI), products_module_1.ProductsModule],
     })
 ], AppModule);
