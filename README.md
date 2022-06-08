@@ -24,5 +24,6 @@ A simple Nest APIs build to run different Tests -Unit test, integration test,..)
    The used technologies fortesting are:
    * Jest: for Unit and integration tests
    * Cypress: for E2E tests
-
+   *  User acceptance tests: Please [Click here to see the user acceptance test plan](https://github.com/Hazem-Atya/Pipeline-EC2/blob/main/User-Acceptance-Test-Plan.pdf).
+   *  
 ### Please visit http://ec2-3-39-232-73.ap-northeast-2.compute.amazonaws.com:3000/products to test the APIs
