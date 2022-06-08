@@ -1,6 +1,6 @@
 # Nest CRUD API  Pipeline
 ## Built using
-
+This is a project done 
 <ul>
   <li> NestJs </li>
   <li> MongoDB </li>
@@ -21,4 +21,4 @@
    * Jest: for Unit and integration tests
    * Cypress: for E2E tests
 
-### Please visit http://3.39.232.73:3000/products to test the APIs
+### Please visit http://ec2-3-39-232-73.ap-northeast-2.compute.amazonaws.com:3000/products to test the APIs
