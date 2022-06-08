@@ -1,13 +1,15 @@
 # Nest CRUD API  Pipeline
 
 ## About this repo:
-A simple Nest APIs build to run different Tests -Unit test, integration test,..) and run a pipeline to run the tests, push to docker HUB and then deploy in a EC2 machine
+A simple Nest API build to run different Tests (Unit test, integration test,..) and run a pipeline (test, push to docker HUB and then deploy in a EC2 machine)
 
-## Built using
+## Technologies
  
 <ul>
-  <li> NestJs </li>
+  <li> NestJs: node.js framework </li>
   <li> MongoDB </li>
+ <li> Jest: Testing framework </li>
+ <li> AWS EC2: Amazon Elastic Compute Cloud </li>
 </ul>
    
  
